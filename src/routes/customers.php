@@ -17,8 +17,8 @@ $app->add(function ($req, $res, $next) {
 });
 
 // Get All Customers
-$app->get('/api/Empleados', function(Request $request, Response $response){
-    $sql = "SELECT * FROM EMPLEADO";
+$app->get('/api/customers', function(Request $request, Response $response){
+    $sql = "SELECT * FROM customers";
 
     try{
         // Get DB Object
@@ -36,10 +36,10 @@ $app->get('/api/Empleados', function(Request $request, Response $response){
 });
 
 // Get Single Customer
-$app->get('/api/Empleados/{id}', function(Request $request, Response $response){
+$app->get('/api/customer/{id}', function(Request $request, Response $response){
     $id = $request->getAttribute('id');
 
-    $sql = "SELECT * FROM EMPLEADO WHERE id = $id";
+    $sql = "SELECT * FROM customers WHERE id = $id";
 
     try{
         // Get DB Object
@@ -57,7 +57,7 @@ $app->get('/api/Empleados/{id}', function(Request $request, Response $response){
 });
 
 // Add Customer
-$app->post('/api/Empleados/add', function(Request $request, Response $response){
+$app->post('/api/customer/add', function(Request $request, Response $response){
     $first_name = $request->getParam('first_name');
     $last_name = $request->getParam('last_name');
     $phone = $request->getParam('phone');
@@ -66,7 +66,7 @@ $app->post('/api/Empleados/add', function(Request $request, Response $response){
     $city = $request->getParam('city');
     $state = $request->getParam('state');
 
-    $sql = "INSERT INTO EMPLEADO (first_name,last_name,phone,email,address,city,state) VALUES
+    $sql = "INSERT INTO customers (first_name,last_name,phone,email,address,city,state) VALUES
     (:first_name,:last_name,:phone,:email,:address,:city,:state)";
 
     try{
@@ -95,7 +95,7 @@ $app->post('/api/Empleados/add', function(Request $request, Response $response){
 });
 
 // Update Customer
-$app->put('/api/Empleados/update/{id}', function(Request $request, Response $response){
+$app->put('/api/customer/update/{id}', function(Request $request, Response $response){
     $id = $request->getAttribute('id');
     $first_name = $request->getParam('first_name');
     $last_name = $request->getParam('last_name');
@@ -141,7 +141,7 @@ $app->put('/api/Empleados/update/{id}', function(Request $request, Response $res
 });
 
 // Delete Customer
-$app->delete('/api/Empleados/delete/{id}', function(Request $request, Response $response){
+$app->delete('/api/customer/delete/{id}', function(Request $request, Response $response){
     $id = $request->getAttribute('id');
 
     $sql = "DELETE FROM customers WHERE id = $id";
